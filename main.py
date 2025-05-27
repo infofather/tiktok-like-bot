@@ -4,7 +4,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.webhook import SendMessage
 from aiogram.utils.executor import start_webhook
 
-from src.bot import dp, bot, on_startup
+from bot import dp, bot, on_startup
 from src.config import PORT, WEBHOOK_URL, USE_WEBHOOK
 
 # Настройка логирования
