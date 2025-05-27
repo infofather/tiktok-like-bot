@@ -9,8 +9,8 @@ from aiogram.types import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils import executor
 from aiogram.utils.exceptions import TelegramAPIError
 
-from src.database import Database
-from src.config import BOT_TOKEN, DB_FILE, ADMIN_IDS, TIKTOK_URL_REGEX
+from database import Database
+from config import BOT_TOKEN, DB_FILE, ADMIN_IDS, TIKTOK_URL_REGEX
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
