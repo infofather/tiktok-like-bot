@@ -67,6 +67,8 @@ async def check_spam(message: types.Message, command: str):
 @dp.message_handler(commands=['start'])
 async def cmd_start(message: types.Message):
     """Handle /start command"""
+    logging.info(f"Получена команда /start от пользователя {message.from_user.id}")
+    # остальной код функции
     if await check_spam(message, 'start'):
         return
     
