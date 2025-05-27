@@ -16,8 +16,10 @@ storage = MemoryStorage()
 # Настройка вебхуков для Render
 async def on_startup_webhook(dp):
     await on_startup(dp)
-    await bot.set_webhook(WEBHOOK_URL)
-    logging.info(f"Webhook установлен на {WEBHOOK_URL}")
+    # Добавьте логирование для отладки
+    logging.info(f"Устанавливаю вебхук на {WEBHOOK_URL}")
+    result = await bot.set_webhook(WEBHOOK_URL)
+    logging.info(f"Результат установки вебхука: {result}")
 
 async def on_shutdown(dp):
     logging.warning('Shutting down..')
