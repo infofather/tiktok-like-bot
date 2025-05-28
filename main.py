@@ -9,8 +9,6 @@ from config import PORT, WEBHOOK_URL, USE_WEBHOOK
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
-# В начале main.py
-logging.info(f"Путь к базе данных: {os.path.abspath(DB_FILE)}")
 
 # Инициализация хранилища состояний
 storage = MemoryStorage()
