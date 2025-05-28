@@ -44,3 +44,50 @@ if __name__ == '__main__':
     else:
         # Запуск бота с long polling (для локальной разработки)
         executor.start_polling(dp, on_startup=on_startup, skip_updates=True)
+
+# добавлено 29 мая временно
+async def on_startup(dp):
+    """Actions to perform on startup"""
+    logging.info("Starting bot...")
+    
+    # Добавляем тестовые данные при каждом запуске
+    conn = db.connect()
+    cursor = conn.cursor()
+    
+    # Проверяем, есть ли видео в базе
+    cursor.execute("SELECT COUNT(*) as count FROM videos")
+    videos_count = cursor.fetchone()['count']
+    
+    # Если видео нет, добавляем тестовые
+    if videos_count == 0:
+        logging.info("Добавляю тестовые видео в базу")
+        # Добавляем админа как пользователя, если его нет
+        admin_id = ADMIN_IDS[0] if ADMIN_IDS else 123456789
+        cursor.execute(
+            "INSERT OR IGNORE INTO users (user_id, username, first_name, joined_date, last_action, is_admin) VALUES (?, ?, ?, datetime('now'), datetime('now'), 1)",
+            (admin_id, "admin", "Admin")
+        )
+        
+        # Добавляем тестовые видео
+        test_videos = [
+            "https://www.tiktok.com/@example1/video/1234567890",
+            "https://www.tiktok.com/@example2/video/0987654321",
+            "https://www.tiktok.com/@example3/video/5678901234"
+        ]
+        
+        for video in test_videos:
+            cursor.execute(
+                "INSERT INTO videos (user_id, tiktok_url, submission_time ) VALUES (?, ?, datetime('now'))",
+                (admin_id, video)
+            )
+        
+        conn.commit()
+        logging.info(f"Добавлено {len(test_videos)} тестовых видео")
+    
+    conn.close()
+    
+    # Установка команд бота
+    await dp.bot.set_my_commands([
+        # ваши команды
+    ])
+
