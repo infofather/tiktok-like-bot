@@ -18,8 +18,8 @@ async def on_startup_webhook(dp):
     await on_startup(dp)
     # Сначала удаляем текущий вебхук
     await bot.delete_webhook()
-    logging.info(f"Устанавливаю вебхук на {https://tiktok-like-bot.onrender.com}")
-    result = await bot.set_webhook(https://tiktok-like-bot.onrender.com)
+    logging.info(f"Устанавливаю вебхук на {WEBHOOK_URL}")
+    result = await bot.set_webhook(WEBHOOK_URL)
     logging.info(f"Результат установки вебхука: {result}")
 
 async def on_shutdown(dp):
