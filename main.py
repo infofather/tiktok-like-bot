@@ -1,3 +1,6 @@
+# В начале main.py
+logging.info(f"Путь к базе данных: {os.path.abspath(DB_FILE)}")
+
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
