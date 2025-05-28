@@ -30,9 +30,17 @@ async def on_shutdown(dp):
     logging.warning('Bye!')
 
 if __name__ == '__main__':
-    # Принудительно используем long polling независимо от настройки USE_WEBHOOK
-    executor.start_polling(dp, on_startup=on_startup, skip_updates=True)
-
+    if USE_WEBHOOK:
+        # Запуск бота с вебхуками (для Render)
+        start_webhook(
+            dispatcher=dp,
+            webhook_path='',
+            on_startup=on_startup_webhook,
+            on_shutdown=on_shutdown,
+            skip_updates=True,
+            host='0.0.0.0',
+            port=PORT,
+        )
     else:
         # Запуск бота с long polling (для локальной разработки)
         executor.start_polling(dp, on_startup=on_startup, skip_updates=True)
