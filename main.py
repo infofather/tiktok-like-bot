@@ -1,6 +1,3 @@
-# В начале main.py
-logging.info(f"Путь к базе данных: {os.path.abspath(DB_FILE)}")
-
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -12,6 +9,8 @@ from config import PORT, WEBHOOK_URL, USE_WEBHOOK
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
+# В начале main.py
+logging.info(f"Путь к базе данных: {os.path.abspath(DB_FILE)}")
 
 # Инициализация хранилища состояний
 storage = MemoryStorage()
