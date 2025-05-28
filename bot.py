@@ -96,6 +96,7 @@ async def cmd_start(message: types.Message):
 @dp.message_handler(commands=['submit'])
 async def cmd_submit(message: types.Message):
     """Handle /submit command"""
+    logging.info(f"Получена команда /submit от пользователя {message.from_user.id}")
     if await check_spam(message, 'submit'):
         return
     
